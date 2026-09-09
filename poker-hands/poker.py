@@ -23,9 +23,12 @@ def parse_hand(text):
     ranks = [card[:-1] for card in cards]
     suits = [card[-1] for card in cards]
 
-# We need to return the above values and also decide how are we going to return then
-#These values we are going to use them on the classify_hand function to classify the hand and compare_hands
-    return ...
+# return is returning the above values in a dictionary form
+    return {
+        "cards": cards,
+        "ranks": ranks,
+        "suits": suits
+    }
 
 
 def classify_hand(hand):
@@ -47,4 +50,3 @@ def classify_hand(hand):
 def compare_hands(hand_a, hand_b):
     raise NotImplementedError("This function is not implemented yet.")
 
-good= "morning"
