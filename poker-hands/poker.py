@@ -23,10 +23,24 @@ def parse_hand(text):
     ranks = [card[:-1] for card in cards]
     suits = [card[-1] for card in cards]
 
+# We need to return the above values and also decide how are we going to return then
+#These values we are going to use them on the classify_hand function to classify the hand and compare_hands
     return ...
 
 
 def classify_hand(hand):
+     #Split the work in statement
+    #1st statement that going to check if this is a straight flush
+    #2nd statement that going to check if this is a straight flush
+    #3rd statement that going to check if this is a four of a kind
+    #4th statement that going to check if this is a full house
+    #5th  statement that going to check if this is a flush
+    #6th statement that going to check if this is a straight
+    #7th statement that going to check if this is a three of a kind
+    #8th statement that going to check if this is a two pair
+    #Otherwise it a pair
+
+    #rerurn a dictionary tha will have hand rank and catagory for both hands
     raise NotImplementedError("This function is not implemented yet.")
 
 
