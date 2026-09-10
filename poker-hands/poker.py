@@ -39,6 +39,7 @@ def classify_hand(hand):
 
     # created empty list to store ranks integer values
     rank_values = []
+    sorted_rank = sorted(rank_values)
 
     for rank in hand["ranks"]:
         value = RANK_ORDER[rank]
@@ -81,11 +82,8 @@ def classify_hand(hand):
 
     # STRAIGHT
     # Five ranks are consecutive.
-    # Puts numbers in order from lowest to highest
-    # Puts numbers in order from lowest to highest
-    sorted_rank = sorted(rank_values)
     #Checks if 1 appears 5 times in counts 
-    if counts.count(1)==5:
+    elif counts.count(1)==5:
         #lower straight(A-14 so LS needs seperate condition)
         if sorted_rank==[2,3,4,5,14]:
             return "straight"
