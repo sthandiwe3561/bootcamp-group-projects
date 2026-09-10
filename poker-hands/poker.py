@@ -94,8 +94,9 @@ def classify_hand(hand):
          #loop checks if the above variable is true,by check if the pervious number plus 1 equals the previous number
          # if one of the numbers plus one dont equal the number after it, it returns False and breaks the loop
          #if they dont equal it will returns True and it returns straight
+        is_straight = True
         for i in range(4):
-            if sorted_rank[i+1] != sorted[i]+1:
+            if sorted_rank[i+1] != sorted_rank[i]+1:
                 is_straight = False
                 break
         if is_straight:
