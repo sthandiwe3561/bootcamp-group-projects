@@ -34,7 +34,7 @@ def classify_hand(hand):
      #Split the work in statement
     #1st statement that going to check if this is a straight flush
 
-        # Loop through the ranks in the hand, find their integer values,
+    # Loop through the ranks in the hand, find their integer values,
     # and store them in rank_values
 
     # created empty list to store ranks integer values
@@ -46,10 +46,19 @@ def classify_hand(hand):
 
     # These conditions define the rules for each hand category.
     # We check the strongest categories first so that a hand is given
-    # the highest category it qualifies for.
 
     # Create an empty list to store how many times each rank appears.
     counts = []
+    comparing_list = []
+
+    for i in rank_values:
+        if i not in comparing_list:
+            count = rank_values.count(i)
+            counts.append(count)
+            comparing_list.append(i)
+
+    
+        
 
     # STRAIGHT FLUSH
     # Consecutive ranks AND all five cards have the same suit.
@@ -57,17 +66,18 @@ def classify_hand(hand):
 
     # FOUR OF A KIND
     # One rank appears four times and another rank appears once.
-    if 4 in counts and 1 in counts:
-        return "four_of_a_kind"
+    if 4 in counts:
+        return "four_of_a_kind", comparing_list
 
     # FULL HOUSE
     # One rank appears three times and another rank appears twice.
     elif 3 in counts and 2 in counts:
-        return "full_house"
+        return "full_house", comparing_list
 
     # FLUSH
     # All five cards have the same suit.
-    # Add condition later.
+    if len(set(hand["suits"])) == 1:
+        return "flush", comparing_list
 
     # STRAIGHT
     # Five ranks are consecutive.
@@ -75,28 +85,61 @@ def classify_hand(hand):
 
     # THREE OF A KIND
     # One rank appears three times and the other two ranks appear once.
-    elif 3 in counts and counts.count(1) == 2:
-        return "three_of_a_kind"
+    elif counts.count(3) == 1:
+        return "three_of_a_kind", comparing_list
 
     # TWO PAIR
     # Two different ranks appear twice and one rank appears once.
-    elif counts.count(2) == 2 and 1 in counts:
-        return "two_pair"
+    elif counts.count(2) == 2:
+    
+            pair_rank = None
+    
+            for i in rank_values:
+                if rank_values.count(i) == 2:
+                    pair_rank = i
+    
+            remaining_ranks = []
+    
+            for i in rank_values:
+                if i != pair_rank:
+                    remaining_ranks.append(i)
+    
+            remaining_ranks.sort(reverse=True)
+    
+            comparing_list = [pair_rank] + remaining_ranks
+    
+            return "two_pair", comparing_list
+    
 
     # PAIR
     # One rank appears twice and the other three ranks appear once.
-    elif 2 in counts and counts.count(1) == 3:
-        return "pair"
+    elif counts.count(2) == 1:
+
+        pair_rank = None
+
+        for i in rank_values:
+            if rank_values.count(i) == 2:
+                pair_rank = i
+
+        remaining_ranks = []
+
+        for i in rank_values:
+            if i != pair_rank:
+                remaining_ranks.append(i)
+
+        remaining_ranks.sort(reverse=True)
+
+        comparing_list = [pair_rank] + remaining_ranks
+
+        return "pair", comparing_list
 
     # HIGH CARD
     # All five ranks are different and do not form a straight.
     # Add the straight check before this condition.
-    elif counts == [1, 1, 1, 1, 1]:
-        return "high_card"
+    elif counts == [1,1,1,1,1]:
+        return "high_card",  comparing_list
         
-    
-        #rerurn a dictionary tha will have hand rank and catagory for both hands
-    raise NotImplementedError("This function is not implemented yet.")
+
     
 
 
