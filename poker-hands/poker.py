@@ -82,6 +82,25 @@ def classify_hand(hand):
     # STRAIGHT
     # Five ranks are consecutive.
     # Puts numbers in order from lowest to highest
+    # Puts numbers in order from lowest to highest
+    sorted_rank = sorted(rank_values)
+    #Checks if 1 appears 5 times in counts 
+    if counts.count(1)==5:
+        #lower straight(A-14 so LS needs seperate condition)
+        if sorted_rank==[2,3,4,5,14]:
+            return "straight"
+         #is_straight is a variable that assume the hand is already straight
+         # stores the restults of the loop
+          
+         #loop checks if the above variable is true,by check if the pervious number plus 1 equals the previous number
+         # if one of the numbers plus one dont equal the number after it, it returns False and breaks the loop
+         #if they dont equal it will returns True and it returns straight
+        for i in range(4):
+            if sorted_rank[i+1] != sorted[i]+1:
+                is_straight = False
+                break
+        if is_straight:
+            return "straight"
 
 
     # THREE OF A KIND
