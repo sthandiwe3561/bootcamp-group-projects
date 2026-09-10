@@ -39,11 +39,12 @@ def classify_hand(hand):
 
     # created empty list to store ranks integer values
     rank_values = []
-    sorted_rank = sorted(rank_values)
 
     for rank in hand["ranks"]:
         value = RANK_ORDER[rank]
         rank_values.append(value)
+
+    sorted_rank = sorted(rank_values)
 
     # These conditions define the rules for each hand category.
     # We check the strongest categories first so that a hand is given
