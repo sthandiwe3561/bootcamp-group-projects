@@ -86,7 +86,7 @@ def classify_hand(hand):
     elif counts.count(1)==5:
         #lower straight(A-14 so LS needs seperate condition)
         if sorted_rank==[2,3,4,5,14]:
-            return "straight"
+            return "straight", comparing_list
          #is_straight is a variable that assume the hand is already straight
          # stores the restults of the loop
           
@@ -98,7 +98,7 @@ def classify_hand(hand):
                 is_straight = False
                 break
         if is_straight:
-            return "straight"
+            return "straight", comparing_list
 
 
     # THREE OF A KIND
