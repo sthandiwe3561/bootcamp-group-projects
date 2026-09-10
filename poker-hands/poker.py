@@ -29,7 +29,7 @@ def parse_hand(text):
         "ranks": ranks,
         "suits": suits
     }
-
+ 
 def classify_hand(hand):
      #Split the work in statement
     #1st statement that going to check if this is a straight flush
@@ -71,7 +71,9 @@ def classify_hand(hand):
 
     # STRAIGHT
     # Five ranks are consecutive.
-    # Add condition later.
+    # Puts numbers in order from lowest to highest
+    sorted_rank = sorted(rank_values)
+
 
     # THREE OF A KIND
     # One rank appears three times and the other two ranks appear once.
