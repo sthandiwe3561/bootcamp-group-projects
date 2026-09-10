@@ -44,8 +44,6 @@ def classify_hand(hand):
         value = RANK_ORDER[rank]
         rank_values.append(value)
 
-    sorted_rank = sorted(rank_values)
-
     # These conditions define the rules for each hand category.
     # We check the strongest categories first so that a hand is given
 
@@ -65,10 +63,18 @@ def classify_hand(hand):
     # STRAIGHT FLUSH
     # Consecutive ranks AND all five cards have the same suit.
     # Add condition later.
+    if len(set(hand["suits"])) == 1:
+        sorted_ranks = sorted(rank_values)
+
+        if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
+            return "straight_flush"
+
+    
+
 
     # FOUR OF A KIND
     # One rank appears four times and another rank appears once.
-    if 4 in counts:
+    elif 4 in counts:
         return "four_of_a_kind", comparing_list
 
     # FULL HOUSE
@@ -83,24 +89,26 @@ def classify_hand(hand):
 
     # STRAIGHT
     # Five ranks are consecutive.
+    # Puts numbers in order from lowest to highest
+    # Puts numbers in order from lowest to highest
+    sorted_rank = sorted(rank_values)
     #Checks if 1 appears 5 times in counts 
-    elif counts.count(1)==5:
+    if counts.count(1)==5:
         #lower straight(A-14 so LS needs seperate condition)
         if sorted_rank==[2,3,4,5,14]:
-            return "straight", comparing_list
+            return "straight"
          #is_straight is a variable that assume the hand is already straight
          # stores the restults of the loop
           
          #loop checks if the above variable is true,by check if the pervious number plus 1 equals the previous number
          # if one of the numbers plus one dont equal the number after it, it returns False and breaks the loop
          #if they dont equal it will returns True and it returns straight
-        is_straight = True
         for i in range(4):
-            if sorted_rank[i+1] != sorted_rank[i]+1:
+            if sorted_rank[i+1] != sorted[i]+1:
                 is_straight = False
                 break
         if is_straight:
-            return "straight", comparing_list
+            return "straight"
 
 
     # THREE OF A KIND
