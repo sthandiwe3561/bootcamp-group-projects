@@ -76,13 +76,12 @@ def classify_hand(hand):
 
     # FLUSH
     # All five cards have the same suit.
-    if len(set(hand["suits"])) == 1:
+    elif len(set(hand["suits"])) == 1:
         return "flush", comparing_list
 
     # STRAIGHT
     # Five ranks are consecutive.
     # Puts numbers in order from lowest to highest
-    sorted_rank = sorted(rank_values)
 
 
     # THREE OF A KIND
