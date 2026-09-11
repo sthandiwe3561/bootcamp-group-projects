@@ -71,7 +71,7 @@ def classify_hand(hand):
             return "straight_flush", comparing_list
 
         # Check for regular straight
-        if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
+        if sorted_ranks and sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
             return "straight_flush", comparing_list
         
         # Same suite but not consecutive ranks, so it's a flush
