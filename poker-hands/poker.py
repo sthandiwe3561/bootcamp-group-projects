@@ -169,10 +169,6 @@ def classify_hand(hand):
 
         
 
-    
-
-
-
 
 
 def compare_hands(hand_a, hand_b):
