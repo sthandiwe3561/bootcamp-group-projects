@@ -43,6 +43,7 @@ def classify_hand(hand):
     for rank in hand["ranks"]:
         value = RANK_ORDER[rank]
         rank_values.append(value)
+        sorted_rank = sorted_rank(rank_values)
 
     # These conditions define the rules for each hand category.
     # We check the strongest categories first so that a hand is given
@@ -89,11 +90,8 @@ def classify_hand(hand):
 
     # STRAIGHT
     # Five ranks are consecutive.
-    # Puts numbers in order from lowest to highest
-    # Puts numbers in order from lowest to highest
-    sorted_rank = sorted_rank(rank_values)
     #Checks if 1 appears 5 times in counts 
-    if counts.count(1)==5:
+    elif counts.count(1)==5:
         #lower straight(A-14 so LS needs seperate condition)
         if sorted_rank==[2,3,4,5,14]:
             return "straight"
@@ -108,7 +106,7 @@ def classify_hand(hand):
                 is_straight = False
                 break
         if is_straight:
-            return "straight"
+            return "straight", comparing_list
 
 
     # THREE OF A KIND
