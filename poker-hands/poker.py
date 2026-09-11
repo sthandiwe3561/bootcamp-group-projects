@@ -37,7 +37,7 @@ def classify_hand(hand):
     # Loop through the ranks in the hand, find their integer values,
     # and store them in rank_values
 
-    # created empty list to store ranks integer values
+    # creeate empty list to store the integer values of the ranks
     rank_values = []
 
     for rank in hand["ranks"]:

@@ -55,6 +55,13 @@ class TestPokerHands(unittest.TestCase):
         hand = poker.parse_hand("10S,10H,10D,10C,2S")
         category, _ = poker.classify_hand(hand)
         self.assertEqual(category, "four_of_a_kind")
+    
+        # Test that five cards of the same suit with consecutive ranks are classified as a straight flush
+    def test_straight_flush(self):
+        hand = poker.parse_hand("5S,6S,7S,8S,9S")
+        category, _ = poker.classify_hand(hand)
+        self.assertEqual(category, "straight_flush")
+
 
     def test_flush_is_not_a_straight(self):
         hand = poker.parse_hand("2S,5S,9S,JS,KS")
