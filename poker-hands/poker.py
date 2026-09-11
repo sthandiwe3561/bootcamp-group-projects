@@ -42,6 +42,7 @@ def classify_hand(hand):
 
     for rank in hand["ranks"]:
         value = RANK_ORDER[rank]
+        rank_values.append(value)
         
 
     # These conditions define the rules for each hand category.
