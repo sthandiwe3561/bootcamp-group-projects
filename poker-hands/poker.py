@@ -101,7 +101,7 @@ def classify_hand(hand):
     #Checks if 1 appears 5 times in counts 
     elif counts.count(1)==5:
         # Arranges the numbers from highest to lowest 
-        sorted_rank = sorted_rank(rank_values)
+        sorted_rank = sorted(rank_values)
         #lower straight(A-14 so LS needs seperate condition)
         if sorted_rank==[2,3,4,5,14]:
             return "straight" , comparing_list
@@ -116,8 +116,12 @@ def classify_hand(hand):
             if sorted_rank[i+1] != sorted_rank[i]+1:
                 is_straight = False
                 break
+            
         if is_straight:
             return "straight", comparing_list
+        
+        return "high_card",  comparing_list
+
 
 
     # THREE OF A KIND
@@ -170,11 +174,6 @@ def classify_hand(hand):
 
         return "pair", comparing_list
 
-    # HIGH CARD
-    # All five ranks are different and do not form a straight.
-    # Add the straight check before this condition.
-    elif counts == [1,1,1,1,1]:
-        return "high_card",  comparing_list
         
 
     
