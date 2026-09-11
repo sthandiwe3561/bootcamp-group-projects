@@ -42,7 +42,7 @@ def classify_hand(hand):
 
     for rank in hand["ranks"]:
         value = RANK_ORDER[rank]
-        rank_values.append(value)
+        
 
     # These conditions define the rules for each hand category.
     # We check the strongest categories first so that a hand is given
@@ -66,14 +66,23 @@ def classify_hand(hand):
     if len(set(hand["suits"])) == 1:
         sorted_ranks = sorted(rank_values)
 
+        #Check for Ace-low straight:
+        if sorted_ranks == [2, 3, 4, 5, 14]:
+            return "straight_flush", comparing_list
+
         if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
             return "straight_flush", comparing_list
 
-    
-
+        # Check for regular straight
+        if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
+            return "straight_flush", comparing_list
+        
+        # Same suite but not consecutive ranks, so it's a flush
+        return "flush", comparing_list
 
     # FOUR OF A KIND
     # One rank appears four times and another rank appears once.
+    # function checks the count of each rank. Rank appears four times
     elif 4 in counts:
         return "four_of_a_kind", comparing_list
 
