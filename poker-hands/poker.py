@@ -70,9 +70,6 @@ def classify_hand(hand):
         if sorted_ranks == [2, 3, 4, 5, 14]:
             return "straight_flush", comparing_list
 
-        if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
-            return "straight_flush", comparing_list
-
         # Check for regular straight
         if sorted_ranks == list(range(sorted_ranks[0], sorted_ranks[0] + 5)):
             return "straight_flush", comparing_list
@@ -90,11 +87,6 @@ def classify_hand(hand):
     # One rank appears three times and another rank appears twice.
     elif 3 in counts and 2 in counts:
         return "full_house", comparing_list
-
-    # FLUSH
-    # All five cards have the same suit.
-    elif len(set(hand["suits"])) == 1:
-        return "flush", comparing_list
 
     # STRAIGHT
     # Five ranks are consecutive.
